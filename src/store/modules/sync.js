@@ -93,14 +93,14 @@ export default {
 	},
 	actions: {
 		export(context){
-			axios.post('http://127.0.0.1:8000/api/task/sync', {columns: context.getters.columns}).then(response => {
+			axios.post(process.env.API_URL+'/task/sync', {columns: context.getters.columns}).then(response => {
 				if(response.data.status) {
 					context.commit('formatingColumns', response.data.data);
 				}
 			});
 		},
 		import(context){
-			axios.get('http://127.0.0.1:8000/api/task/get').then(response => {
+			axios.get(process.env.API_URL+'/task/get').then(response => {
 				if(response.data.status) {
 					context.commit('formatingColumns', response.data.data);
 				}

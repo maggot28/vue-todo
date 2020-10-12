@@ -30,7 +30,7 @@ export default {
     },
     actions: {
         account(context){
-            axios.get('http://127.0.0.1:8000/api/user/').then(response => {
+            axios.get(process.env.API_URL+'/user/').then(response => {
                 if(response.data.status){
                     context.commit('user', response.data.data.email);
                 } else {
@@ -39,7 +39,7 @@ export default {
             });
         },
         auth(context, user) {
-            axios.post('http://127.0.0.1:8000/api/auth/'+user.auth_type, user).then(response => {
+            axios.post(process.env.API_URL+'/auth/'+user.auth_type, user).then(response => {
                 let token = response.data.data.token;
                 if(response.data.status){
                     context.commit('token', token);
