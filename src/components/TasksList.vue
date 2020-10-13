@@ -1,19 +1,19 @@
 <template>
     <div>
         <md-list>
-            
-            <md-subheader style="display: flex">
-                <md-field>
+            <md-subheader style="display: flex;">
+                <md-field style="flex: 1 1 0%;">
                     <label>List name</label>
                     <md-textarea :value="column" @change="column = $event.target.value" md-autogrow></md-textarea>
                 </md-field>
                 <md-button class="md-icon-button md-accent" @click="deleteList"><md-icon>delete</md-icon></md-button>
             </md-subheader>
-            
-            <draggable v-model="tasks" draggable=".drag-task-item" group="tasks">
+            <draggable v-model="tasks" v-bind="dragOptions" draggable=".drag-task-item">
+
                 <div class="md-layout-item drag-task-item" v-for="task in tasks" :key="task.id">
                     <task :taskID="task.id"></task>
                 </div>
+                
                 <md-list-item slot="header">
                     <md-field>
                         <label>New Task</label>
@@ -21,8 +21,8 @@
                     </md-field>
                     <md-button v-if="newTaskName" class="md-icon-button md-primary" @click="addTask()"><md-icon>add</md-icon></md-button>
                 </md-list-item>
+
             </draggable>
-            
         </md-list>
     </div>
 </template>
@@ -61,11 +61,18 @@ export default {
                     this.$store.commit('column', { name: this.columnName, column: column });
                 }
 			}
+        },
+        dragOptions() {
+            return {
+                animation: 200,
+                group: "tasks",
+                ghostClass: "ghost-task",
+            };
         }
 	},
     methods: {
         addTask(){
-            this.$store.commit('column', { name: this.columnName, task: { name: this.newTaskName } });
+            this.$store.commit('column', { name: this.columnName, task: { name: this.newTaskName, id: Math.random().toString(36).substr(2, 9) } });
             this.newTaskName = "";
         },
         deleteList(){
@@ -73,13 +80,9 @@ export default {
         },
     }
 }
-
 </script>
 <style lang="less">
-    .list-name{
-        border: 0;
-        :active{
-            outline: none;
-        }
+    .ghost-task {
+        opacity: 0.5;
     }
 </style>

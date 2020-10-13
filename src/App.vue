@@ -6,7 +6,7 @@
 		</template>
 		<template v-else>
 			<div class="tasks-lists">
-				<draggable v-model="tasksColumns" draggable=".drag-list-item">
+				<draggable v-model="tasksColumns" v-bind="dragOptions" draggable=".drag-list-item">
 					<tasks-list class="task-list drag-list-item" v-for="taskColumn in tasksColumns" :key="taskColumn.name" :columnName="taskColumn.name"></tasks-list>
 					<div class="task-list">
 						<md-list slot="header">
@@ -54,7 +54,13 @@ export default {
 			set(columns) {
 				this.$store.commit('columns', columns);
 			}
-		}
+		},
+		dragOptions() {
+            return {
+                animation: 200,
+                ghostClass: "ghost-list"
+            };
+        }
 	},
 	created(){
 		this.$store.subscribe((mutation) => {
@@ -84,11 +90,48 @@ export default {
 		display: inline-block;
 		vertical-align: top;
 		white-space: nowrap;
+		max-height: calc(100vh - 123px);
+		overflow-y: overlay;
+		overflow-x: hidden;
+
+		&::-webkit-scrollbar-track{
+			border-radius: 8px;
+			background-color: #f1f1f1;
+		}
+		&::-webkit-scrollbar {
+			width: 5px;
+			background-color: #f1f1f1;
+		}
+		&::-webkit-scrollbar-thumb {
+			border-radius: 10px;
+			background-color: #bebebe;
+		}
+
+
 	}
 	.tasks-lists{
 		user-select: none;
 		white-space: nowrap;
 		overflow-x: auto;
 		overflow-y: hidden;
+		padding-bottom: 60px;
+		min-height: calc(100vh - 48px);
+
+		&::-webkit-scrollbar-track{
+			border-radius: 8px;
+			background-color: #f1f1f1;
+		}
+		&::-webkit-scrollbar {
+			width: 5px;
+			background-color: #f1f1f1;
+		}
+		&::-webkit-scrollbar-thumb {
+			border-radius: 10px;
+			background-color: #bebebe;
+		}
 	}
+
+	.ghost-list {
+        opacity: 0.5;
+    }
 </style>
