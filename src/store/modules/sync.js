@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default {
 	state: () => ({
-		tasksData: JSON.parse(localStorage.getItem('VD_tasks')),
+		tasksData: (JSON.parse(localStorage.getItem('VD_tasks')))? JSON.parse(localStorage.getItem('VD_tasks')): [],
 		loading: false,
 	}),
 	mutations: {
