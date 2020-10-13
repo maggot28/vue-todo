@@ -93,14 +93,14 @@ export default {
 	},
 	actions: {
 		export(context){
-			axios.post(process.env.API_URL+'/task/sync', {columns: context.getters.columns}).then(response => {
+			axios.post(process.env.VUE_APP_API_URL+'/task/sync', {columns: context.getters.columns}).then(response => {
 				if(response.data.status) {
 					context.commit('formatingColumns', response.data.data);
 				}
 			});
 		},
 		import(context){
-			axios.get(process.env.API_URL+'/task/get').then(response => {
+			axios.get(process.env.VUE_APP_API_URL+'/task/get').then(response => {
 				if(response.data.status) {
 					context.commit('formatingColumns', response.data.data);
 				}

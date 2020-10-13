@@ -30,7 +30,7 @@ export default {
     },
     actions: {
         account(context){
-            axios.get(process.env.API_URL+'/user/').then(response => {
+            axios.get(process.env.VUE_APP_API_URL+'/user/').then(response => {
                 if(response.data.status){
                     context.commit('user', response.data.data.email);
                 } else {
@@ -39,7 +39,7 @@ export default {
             });
         },
         auth(context, user) {
-            axios.post(process.env.API_URL+'/auth/'+user.auth_type, user).then(response => {
+            axios.post(process.env.VUE_APP_API_URL+'/auth/'+user.auth_type, user).then(response => {
                 let token = response.data.data.token;
                 if(response.data.status){
                     context.commit('token', token);
@@ -49,7 +49,8 @@ export default {
                 }
             });
         },
-        logout(context){
+        logout(context, user){
+            axios.post(process.env.VUE_APP_API_URL+'/auth/logout', user);
             localStorage.removeItem('VD_token')
             context.commit('user', "");
             context.commit('token', "");
