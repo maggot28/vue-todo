@@ -12,7 +12,7 @@ export default {
 		column(state, data){
 			let column = state.tasksData.find((column, i) => {
 				if (column.name === data.name) {
-					if(data.tasks && data.tasks.length > 0)
+					if(data.tasks && Array.isArray(data.tasks))
 						state.tasksData[i]['tasks'] = data.tasks;
 					else if(data.task)
 						state.tasksData[i]['tasks'].unshift(data.task);
