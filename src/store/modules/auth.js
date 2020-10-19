@@ -30,7 +30,7 @@ export default {
     },
     actions: {
         account(context){
-            axios.get(process.env.VUE_APP_API_URL+'/user/').then(response => {
+            axios.get(process.env.VUE_APP_API_URL+'/user').then(response => {
                 if(response.data.status){
                     context.commit('user', response.data.data.email);
                 } else {
