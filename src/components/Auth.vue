@@ -4,40 +4,40 @@
 			<loading :align="'right'" :size="30"></loading>
 		</template>
         <form v-else-if="!account" novalidate @submit.prevent="auth">
-            <div class="md-layout md-gutter md-alignment-center-right">
-                <div class="md-layout-item md-size-15 md-xsmall-size-40">
+            <div class="auth-nav">
+                <div>
                     <md-field>
                         <label>Email</label>
                         <md-input type="email" v-model="user.email"></md-input>
                     </md-field>
                 </div>
-                <div class="md-layout-item md-size-15 md-xsmall-size-40">
+                <div>
                     <md-field>
                         <label>Password</label>
                         <md-input type="password" v-model="user.password"></md-input>
                     </md-field>
                 </div>
-                <div class="md-layout-item md-size-10">
+                <div>
                     <md-button type="submit" class="md-raised md-primary" @click="user.auth_type='login'">Login</md-button>
                 </div>
-                <div class="md-layout-item md-size-10">
+                <div>
                     <md-button type="submit" class="md-raised md-primary" @click="user.auth_type='signup'">Register</md-button>
                 </div>
             </div>
         </form>
         <div v-else>
-            <div class="md-layout md-gutter md-alignment-center-right">
-                <div class="md-layout-item md-size-20">
+            <div class="auth-nav">
+                <div>
                     Login as: {{account}}
                 </div>
-                <div class="md-layout-item md-size-15">
-                    <md-button type="button" class="md-raised md-primary" @click="logout">Logout</md-button>
+                <div>
+                    <md-button type="button" class="md-raised md-primary" @click="logout()">Logout</md-button>
                 </div>
-                <div class="md-layout-item md-size-15">
-                    <md-button type="button" class="md-raised md-primary" @click="syncOut">Export</md-button>
+                <div>
+                    <md-button type="button" class="md-raised md-primary" @click="syncOut()">Export</md-button>
                 </div>
-                <div class="md-layout-item md-size-15">
-                    <md-button type="button" class="md-raised md-primary" @click="syncIn">Import</md-button>
+                <div>
+                    <md-button type="button" class="md-raised md-primary" @click="syncIn()">Import</md-button>
                 </div>
             </div>
         </div>
@@ -93,3 +93,10 @@ export default {
     }
 }
 </script>
+<style lang="less">
+    .auth-nav{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+</style>
