@@ -6,7 +6,7 @@
                     <label>List name</label>
                     <md-textarea :value="column" @change="column = $event.target.value" md-autogrow></md-textarea>
                 </md-field>
-                <md-button class="md-icon-button md-accent" @click="deleteList"><md-icon>delete</md-icon></md-button>
+                <md-button class="delete-list md-icon-button md-accent" @click="deleteList"><md-icon>delete</md-icon></md-button>
             </md-subheader>
             <draggable v-model="tasks" v-bind="dragOptions" draggable=".drag-task-item">
 
@@ -17,7 +17,7 @@
                 <md-list-item slot="header">
                     <md-field>
                         <label>New Task</label>
-                        <md-input v-model="newTaskName"></md-input>
+                        <md-input v-model="newTaskName" @keyup.enter="addTask()"></md-input>
                     </md-field>
                     <md-button v-if="newTaskName" class="md-icon-button md-primary" @click="addTask()"><md-icon>add</md-icon></md-button>
                 </md-list-item>
@@ -84,5 +84,8 @@ export default {
 <style lang="less">
     .ghost-task {
         opacity: 0.5;
+    }
+    .delete-list{
+        margin-right: 16px;
     }
 </style>

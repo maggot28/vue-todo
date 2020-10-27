@@ -13,9 +13,9 @@
 							<md-list-item>
 								<md-field>
 									<label>New List</label>
-									<md-input v-model="newListName"></md-input>
+									<md-input v-model="newListName" @keyup.enter="addList()"></md-input>
 								</md-field>
-								<md-button v-if="newListName" class="md-icon-button md-primary" @click="addList"><md-icon>add</md-icon></md-button>
+								<md-button v-if="newListName" class="md-icon-button md-primary" @click="addList()"><md-icon>add</md-icon></md-button>
 							</md-list-item>
 						</md-list>
 					</div>
