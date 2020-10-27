@@ -1,5 +1,11 @@
 # vue-do
 
+
+## Description 
+```
+This project is a simple TODO system. The main functional is based under the influence of Trello system. This project is a test one and it's purpose is to show my knowledge of Vue.js. I plan to improve it. 
+```
+
 ## Project setup
 ```
 npm install
@@ -14,11 +20,22 @@ npm run serve
 ```
 npm run build
 ```
-
-### Lints and fixes files
+## Features
 ```
-npm run lint
-```
+- creating lists (columns) and tasks for them
+- drag and drop 
+- saving data on the server using authorization 
+- tasks filtration 
+- tasks search 
+- tasks sorting
+``` 
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Libraries used: 
+```
+- axios
+- vue-dragscroll
+- vue-i18n
+- vue-material
+- vuedraggable
+- vuex
+```
